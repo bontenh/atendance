@@ -1,1 +1,2 @@
 "”atendance"  
+"”spotify_vue"  
