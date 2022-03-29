@@ -1,0 +1,35 @@
+.complete{
+    text-align: center;
+}
+
+.complete h1{
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+.complete table{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.complete table th{
+    padding: 5px 20px;
+}
+
+.complete table td{
+    padding-left: 30px;
+}
+
+.foot{
+    margin-top: 30px;
+}
+
+.foot a{
+    padding: 3px 40px;
+    border: solid 1px;
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,86 @@
+body{
+    background-color: seagreen;
+    color: white;
+}
+
+.top-head{
+    border-bottom: solid 1px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.top-head .head-title{
+    font-weight: bold;
+}
+
+.top-head .head-link{
+    margin: 0 0 0 auto;
+}
+
+.top-head ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.top-head li{
+    margin-right: 10px;
+}
+
+.top-head ul a{
+    display: block;
+    text-decoration: none;
+    border: solid 1px;
+    color: white;
+}
+
+.main{
+    text-align: center;
+}
+
+.main h1{
+    margin-top: 100px;
+    font-size: 40px;
+}
+
+.main table{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.main table th{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.main table td{
+    padding-bottom: 10px;
+    height: 26px;
+}
+
+.main table td .type_name{
+    width: 250px;
+    height: 25px;
+}
+
+.main table td .type_password{
+    width: 250px;
+    height: 25px;
+}
+
+.main table .tr_check{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.main table td .login{
+    color:white;
+    background-color: aqua;
+    border: solid 1px white;
+    font-size: 16px;
+}

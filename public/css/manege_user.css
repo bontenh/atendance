@@ -1,0 +1,116 @@
+body{
+    background-color: seagreen;
+    color: white;
+    padding: 0 5px;
+}
+
+.top-head{
+    border-bottom: solid 1px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.top-head select{
+    color: blue;
+}
+
+.top-head .select-schcool{
+    font-weight: bold;
+}
+
+.top-head .menu-box{
+    margin: 0 0 0 auto;
+}
+
+.top-head .menu-box ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.top-head .menu-box li{
+    margin-right: 10px;
+}
+
+.top-head .menu-box ul a{
+    display: block;
+    text-decoration: none;
+    border: solid 1px;
+    color: white;
+}
+
+.link-menu{
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 40px;
+}
+
+.link-menu a{
+    color: white;
+}
+
+.main table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.main table tr:hover td{
+    background-color: skyblue;
+}
+
+.main table th{
+    border: solid 1px;
+    background-color: skyblue;
+    color: blue;
+    text-align: left;
+    font-weight: normal;
+}
+
+.id{
+    width: 50px;
+}
+
+.name{
+    width: 150px;
+}
+
+.kana_name{
+    width: 150px;
+}
+
+.belong{
+    width: 100px;
+}
+
+.main table td{
+    text-align: left;
+    border: solid 1px;
+    background-color: white;
+    color: blue;
+}
+
+.main .paginate .pagination{
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.main .paginate .pagination ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.main .paginate .pagination li {
+  display: inline;
+  margin-right: 6px;
+}
+
+.page-item .page-link {
+    color: white;
+}

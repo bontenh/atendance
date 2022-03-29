@@ -1,0 +1,22 @@
+body{
+    background-color: seagreen;
+    color: white;
+}
+
+.top-header{
+    border-bottom: solid 1px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: flex;
+}
+
+.top-header .menu-box{
+    margin: 0 0 0 auto;
+}
+
+.top-header .menu-box a{
+    padding: 3px 5px;
+    border: solid 1px;
+    color: white;
+    text-decoration: none;
+}

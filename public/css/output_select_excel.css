@@ -1,0 +1,91 @@
+body{
+    background-color: seagreen;
+    color: white;
+    padding: 0 5px;
+}
+
+.top-head{
+    border-bottom: solid 1px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.top-head select{
+    color: blue;
+    margin-right: 5px;
+}
+
+.top-head input{
+    margin-left: 5px;
+    color: blue;
+}
+
+.top-head .menu-box{
+    margin: 0 0 0 auto;
+}
+
+.top-head .menu-box ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.top-head .menu-box li{
+    margin-right: 10px;
+}
+
+.top-head .menu-box ul a{
+    display: block;
+    text-decoration: none;
+    border: solid 1px;
+    color: white;
+}
+
+.link-menu{
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 40px;
+}
+
+.link-menu a{
+    color: white;
+}
+
+.select_school_month{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.select_school{
+    margin-right: 10px;
+}
+
+.main table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.main table th{
+    border: solid 1px white;
+    background-color: green;
+}
+
+.check{
+    padding: 5px 10px;
+}
+
+.user_name{
+    padding: 5px 20px;
+}
+
+.main table td{
+    border:solid 1px;
+    text-align: center;
+    background-color: white;
+    color: blue;
+    font-weight: bold;
+}

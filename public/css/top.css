@@ -1,0 +1,62 @@
+body{
+    background-color: seagreen;
+    color: white;
+}
+
+.top-head{
+    border-bottom: solid 1px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.top-head .head-title{
+    font-weight: bold;
+}
+
+.top-head .head-link{
+    margin: 0 0 0 auto;
+}
+
+.top-head ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.top-head li{
+    margin-right: 10px;
+}
+
+.top-head ul a{
+    display: block;
+    text-decoration: none;
+    border: solid 1px;
+    color: white;
+}
+
+.main{
+    text-align: center;
+}
+
+.main h1{
+    margin-top: 100px;
+    font-size: 40px;
+}
+
+.main table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: separate;
+    border-spacing: 0 30px;
+}
+
+.main table td{
+    text-align-last: justify;
+    border: solid 2px;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px 150px;
+    margin-bottom: 30px;
+}

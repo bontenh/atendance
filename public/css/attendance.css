@@ -1,0 +1,120 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+.left{
+    height: 100%;
+    width: 65%;
+    background-color:seagreen;
+    color: white;
+}
+
+.link-menu{
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.link-menu a{
+    color: white;
+}
+
+.left-main{
+    text-align: center;
+}
+
+.school-name{
+    margin: 20px;
+    font-size: 25px;
+}
+
+.years{
+    font-size: 25px;
+}
+
+.times{
+    font-size: 60px;
+}
+
+.name{
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.end{
+    padding: 30px;
+    font-size: 30px;
+}
+
+.select-list{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+button{
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    margin-right: 20px;
+    font-size: 30px;
+    color: white;
+    background-color: green;
+}
+
+.center{
+    width: 25%;
+}
+.center ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.center ul li{
+    padding: 10px 10px;
+    border: solid 1px skyblue;
+    display: flex;
+}
+.center ul li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: blue;
+}
+
+.center ul li a:hover{
+    background-color: skyblue;
+}
+.attand{
+    margin: 0 0 0 auto;
+    padding: 1px 5px;
+    border: solid 1px white;
+    color: white;
+    font-weight: bold;
+    background-color: skyblue;
+}
+.scroll{
+    height: 100%;
+    overflow-y:scroll;
+}
+.right{
+    width: 10%;
+    margin-right: 0;
+}
+.right ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.right ul li{
+    text-align: center;
+    border: solid 1px skyblue;
+}
+.right ul li a{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: blue;
+}
