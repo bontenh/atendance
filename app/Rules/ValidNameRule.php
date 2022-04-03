@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+//名前のバリデーション
 class ValidNameRule implements Rule
 {
     /**
@@ -27,11 +28,14 @@ class ValidNameRule implements Rule
     {
         mb_regex_encoding('UTF-8');
 
+        //カナ文字と漢字に一致するなら、false
         if(preg_match('/[ァ-ヶー]+/u',$value) and preg_match('/[一-龠]+/u',$value)){
             return false;
+            //カナ文字または漢字に一致するなら、true
         }else if(preg_match('/^[ァ-ヶー]+$/u',$value) or preg_match('/^[一-龠]+$/u',$value)){
             return true;
         }else{
+            //どちらも一致しないならば、false
             return false;
         }
     }

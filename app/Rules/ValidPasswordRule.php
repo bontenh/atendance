@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+//パスワードのバリデーション(利便性のため、簡易にしている)
 class ValidPasswordRule implements Rule
 {
     /**
@@ -25,7 +26,9 @@ class ValidPasswordRule implements Rule
      */
     public function passes($attribute, $value)
     {
+        //四文字か判断する
         if(strlen($value)==4){
+            //小文字か、数字以外を判断する
             if(preg_match('/^[0-9a-z]+$/',$value)){
                 return true;
             }

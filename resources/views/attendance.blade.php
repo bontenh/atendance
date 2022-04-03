@@ -30,7 +30,7 @@
                             本日はお疲れ様でした！ 
                         @endif
                     </div>
-                    @if(($flag==='list') or($flag=='end'))
+                    @if(($flag==='list') or ($flag=='end'))
                     <div class="select-list">
                         <p>右リストから</p>
                         <p>利用者名を選択して下さい</p>

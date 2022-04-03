@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\CompareStartEndRule;
 use App\Rules\SamePerformCompareRule;
 
+//出席情報記録のバリデーション
 class NewPerformRequest extends FormRequest
 {
     /**

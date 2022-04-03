@@ -5,6 +5,7 @@ namespace App\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use App\Models\Performance;
 
+//出席情報が記録されていないか、確認する
 class NullPerformChangeRule implements Rule
 {
     /**
@@ -26,7 +27,8 @@ class NullPerformChangeRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $perform_user=Performance::where('insert_date',$this->insert_date)->where('user_id',$value)->first();
+        //@var Performance 利用者の出席情報
+        $perform_user = Performance::where('insert_date',$this->insert_date)->where('user_id',$value)->first();
         
         if(!isset($perform_user)){
             return false;

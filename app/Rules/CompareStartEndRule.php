@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+//退席時間と出席時間の比較
 class CompareStartEndRule implements Rule
 {
     /**
@@ -25,8 +26,8 @@ class CompareStartEndRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        
-        if(strtotime($value)>strtotime($this->end)){
+        //退席時間より出席時間が遅ければ、false
+        if(strtotime($value) > strtotime($this->end)){
             return false;
         }
         return true;

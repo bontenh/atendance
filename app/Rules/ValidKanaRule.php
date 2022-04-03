@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+//カナのバリデーション
 class ValidKanaRule implements Rule
 {
     /**
@@ -27,7 +28,8 @@ class ValidKanaRule implements Rule
     {
         mb_regex_encoding('UTF-8');
         
-        if(preg_match('/^[ァ-ヶー]+$/u',$value)){
+        //カナ文字のバリデーション
+        if(preg_match('/^[ァ-ヶー]+$/u', $value)){
             return true;
         }else{
             return false;

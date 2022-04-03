@@ -13,10 +13,10 @@
 
 
 //top画面のルート
-Route::get('/',function(){return redirect()->action('TopController@top');});
-Route::get('/top','TopController@top');
-Route::get('/register','TopController@move_register');
-Route::get('/login','TopController@move_login');
+Route::get('/', function(){return redirect()->action('TopController@top');});
+Route::get('/top', 'TopController@top');
+Route::get('/register', 'TopController@move_register');
+Route::get('/login', 'TopController@move_login');
 
 //管理者の登録とログイン処理
 Route::post('/register/do_admin_register','TopController@do_admin_register');

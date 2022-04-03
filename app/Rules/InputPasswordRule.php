@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+//パスワードと確認用のパスワードがあっているか、確認する
 class InputPasswordRule implements Rule
 {
     /**

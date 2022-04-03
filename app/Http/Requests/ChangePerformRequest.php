@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\CompareStartEndRule;
 use App\Rules\NullPerformChangeRule;
 
+//出席情報変更のバリデーション
 class ChangePerformRequest extends FormRequest
 {
     /**

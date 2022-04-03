@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\NullRule;
 use App\Rules\VerifyPasswordRule;
 
+//管理者のログイン認証
 class LoginAdminRequest extends FormRequest
 {
     /**
@@ -25,6 +26,7 @@ class LoginAdminRequest extends FormRequest
      */
     public function rules()
     {
+        //管理者名とパスワードをバリデーション,認証
         return [
             'admin_name'=>[new NullRule('名前')],
             'admin_password'=>[new NullRule('パスワード'),new VerifyPasswordRule($this->admin_name)],

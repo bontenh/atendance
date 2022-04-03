@@ -7,6 +7,7 @@ use App\Rules\NullRule;
 use App\Rules\ValidKanaRule;
 use App\Rules\ValidNameRule;
 
+//利用者情報変更のバリデーション
 class ChangeUserRequest extends FormRequest
 {
     /**

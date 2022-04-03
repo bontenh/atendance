@@ -19,130 +19,171 @@ use PhpOffice\PhpSpreadsheet\Style\Border as Border;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use ZipArchive;
 
+//出席情報を管理するコントローラークラス
 class PerformanceController extends Controller
 {
 
     public function __construct(Perform $perform)
     {
-        $this->perform=$perform;
+        //PerformRepositoryクラスをコントローラークラスに設定する
+        $this->perform = $perform;
         $this->middleware('checklogin');
     }
 
     //実績管理画面の移動
+    //@param Request $request
+    //@return blade perform/manege_performance
     public function move_manege_performance(Request $request){
+        //日付の選択がなければ、今日の日付
         if(isset($request->select_date)){
-            $select_date=$request->select_date;
+            $select_date = $request->select_date;
         }else{
-            $select_date=date('Y-m-d');
+            $select_date = date('Y-m-d');
         }
-        $school_id=$request->school_id;
+        //@var int 学校のid
+        $school_id = $request->school_id;
         
-        $users=$this->perform->get_user_paginate($school_id);
-        $performances=$this->perform->get_users_performance($users,$select_date);
-        $notes=$this->perform->get_users_note($performances);
+        //@var array 学校の利用者
+        $users = $this->perform->get_user_paginate($school_id);
+        //@var array 利用者の出席情報
+        $performances = $this->perform->get_users_performance($users, $select_date);
+        //@var array 利用者の備考名
+        $notes = $this->perform->get_users_note($performances);
         
         return view('perform.manege_performance',compact('school_id','select_date','users','performances','notes'));
     }
 
     //実績記録の変更画面の移動
+    //@param Request $request
+    //@return blade perform/change_perform_user
     public function move_change_perform_user(Request $request){
-        $status=$request->status;
-        //開始時間と終了時間の配列
-        $attendance_date=$this->create_start_end();
+        $status = $request->status;
+        //@var array 開始時間と終了時間の配列
+        $attendance_date = $this->create_start_end();
 
         //実績記録がない場合変更画面ではなく実績記録画面に移動
-        $perform_user=$this->perform->get_user_performance($request->user_id,$request->select_date);
+        //@var Performance 利用者の出席情報
+        $perform_user = $this->perform->get_user_performance($request->user_id, $request->select_date);
         if(isset($perform_user)){
+            //表示のため、退席時間を設定する
             $perform_user->output_perform_user();
         }else{
             return redirect()->action('PerformanceController@move_perform_new_user',['user_id'=>$request->user_id,'select_date'=>$request->select_date,'status'=>$status]);
         }
-        $school_name=$this->perform->get_school_name($perform_user->user_id);
-        $users=$this->perform->get_school_users($perform_user->user_id);
+        //@var string 学校名
+        $school_name = $this->perform->get_school_name($perform_user->user_id);
+        //@var array 学校の利用者
+        $users = $this->perform->get_school_users($perform_user->user_id);
         
         return view('perform.change_perform_user',compact('school_name','users','perform_user','attendance_date','status'));
     }
 
     //実績記録の変更の実行
+    //@param ChangePerformReques $request
+    //@return blade performe/change_perform_user_complete
     public function change_perform_user(ChangePerformRequest $request){
-        
-        $perform_user=$this->perform->change_perform_user($request);
-                
-        $note=$this->perform->get_note($perform_user->note_id);
-        
-        $school_id=$this->perform->get_school_id($perform_user->user_id);
-        $title="実績記録変更完了";
-        $status=$request->status;
+        //@var Performance 利用者の出席情報
+        $perform_user = $this->perform->change_perform_user($request);
+        //@var stiring 備考名
+        $note = $this->perform->get_note($perform_user->note_id);
+        //@var int 学校のid
+        $school_id = $this->perform->get_school_id($perform_user->user_id);
+        //@var string タイトル
+        $title = "実績記録変更完了";
+        $status = $request->status;
         return view('perform.change_perform_user_complete',compact('title','perform_user','school_id','note','status'));
     }
 
     //実績記録を削除の実行
+    //@param Request $request
+    //@return blade perform/change_perform_user_complete
     public function delete_perform_user(Request $request){
         $status=$request->status;
-        //削除ボタン
-        $perform_user=$this->perform->delete_perform_user($request->user_id,$request->select_date);
-            
-        $school_id=$this->perform->get_school_id($perform_user->user_id);
-        $school_name=$this->perform->get_school_name($perform_user->user_id);
-        $note=$this->perform->get_note($perform_user->note_id);
-        $title="実績記録削除完了";
+        //@var Performance 出席情報の削除した利用者情報
+        $perform_user = $this->perform->delete_perform_user($request->user_id, $request->select_date);
+        //@var int 学校のid
+        $school_id = $this->perform->get_school_id($perform_user->user_id);
+        //@var string 学校名
+        $school_name = $this->perform->get_school_name($perform_user->user_id);
+        //@var string 備考名
+        $note = $this->perform->get_note($perform_user->note_id);
+        //@var string タイトル
+        $title = "実績記録削除完了";
             
         return view('perform.change_perform_user_complete',compact('title','perform_user','school_name','school_id','note','status'));
     }
     //実績記録作成画面の移動
+    //@param Request $request
+    //@return blade performe/perform_new_user
     public function move_perform_new_user(Request $request){
         //1であれば、実績記録管理から移動。2であれば、Excel出力から移動。
         $status=$request->status;
+
         if($status==2){
-            $date_array=explode('-',$request->select_date);
-            $date_array[2]=sprintf('%02d',$date_array[2]);
-            $select_date=date($date_array[0].'-'.$date_array[1].'-'.$date_array[2]);
+            //@var array 日付の配列
+            $date_array = explode('-',$request->select_date);
+            //日を2桁にする
+            $date_array[2] = sprintf('%02d', $date_array[2]);
+            //@var date 日付をdate型にする
+            $select_date = date($date_array[0].'-'.$date_array[1].'-'.$date_array[2]);
         }else{
-            $select_date=$request->select_date;
+            //@var date 選択した日付
+            $select_date = $request->select_date;
         }
 
+        //ユーザーが選択されていないなら、最初の生徒にする
         if(isset($request->user_id)){
-            $user_id=$request->user_id;
+            $user_id = $request->user_id;
         }else{
-            $user_id=1;
+            $user_id = 1;
         }
-        $school_name=$this->perform->get_school_name($user_id);
-        //開始時間と終了時間の配列
-        $attendance_date=$this->create_start_end();
-        
-        $users=$this->perform->get_school_users($user_id);
+        //@var string 学校名
+        $school_name = $this->perform->get_school_name($user_id);
+        //@var date 開始時間と終了時間の配列
+        $attendance_date = $this->create_start_end();
+        //@var array 利用者が所属する生徒数
+        $users = $this->perform->get_school_users($user_id);
         return view('perform.perform_new_user',compact('status','school_name','select_date','user_id','users','attendance_date'));
     }
 
     //実績記録作成の実行
+    //@param NewPerformeRequest $request
+    //@return blade performe/change_perform_user_coplete
     public function perform_new_user(NewPerformRequest $request){
+        //@var Usertable 出席情報を記録した利用者情報
+        $perform_user = $this->perform->create_perform_user($request);
         
-        $perform_user=$this->perform->create_perform_user($request);
-        
-        $status=$request->status;
-        $school_id=$this->perform->get_school_id($perform_user->user_id);
-        $title="実績記録作成完了";
-        $note=$this->perform->get_note($perform_user->note_id);
+        $status = $request->status;
+        //@var int 学校のid
+        $school_id = $this->perform->get_school_id($perform_user->user_id);
+        //@var string タイトル
+        $title = "実績記録作成完了";
+        //@var string 備考
+        $note = $this->perform->get_note($perform_user->note_id);
         return view('perform.change_perform_user_complete',compact('title','perform_user','school_id','note','status'));
     }
 
     //開始時間と終了時間の配列を作成
+    //@return arrray 開始時間(9:30)から終了時間の配列(16:30),15分くぎり
     public function create_start_end(){
-        $attendance_date=[];
-        $attendance_date[]=date('9:30');
-        $attendance_date[]=date('9:45');
-        for($i=10;$i<16;$i++){
-            for($j=0;$j<60;$j=$j+15){
-                if($j==0){
-                    $datetime=date($i.':00');
+        //@var array 開始時間から終了時間の配列,15分くぎり
+        $attendance_date = [];
+        //9:30,9:45を挿入する
+        $attendance_date[] = date('9:30');
+        $attendance_date[] = date('9:45');
+        for($i = 10; $i < 16; $i++){
+            for($j = 0; $j < 60; $j = $j + 15){
+                if($j == 0){
+                    //@var date 時間
+                    $datetime = date($i.':00');
                 }else{
-                    $datetime=date($i.':'.$j);
+                    $datetime = date($i.':'.$j);
                 }
                 
-                $attendance_date[]=$datetime;
+                $attendance_date[] = $datetime;
             }
         }
-        $attendance_date[]=date('16:00');
+        $attendance_date[] = date('16:00');
         return $attendance_date;
     }
 

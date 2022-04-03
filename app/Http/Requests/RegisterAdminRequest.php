@@ -7,6 +7,7 @@ use App\Rules\InputPasswordRule;
 use App\Rules\NullRule;
 use App\Rules\ValidPasswordRule;
 
+//管理者登録情報のバリデーション
 class RegisterAdminRequest extends FormRequest
 {
     /**
@@ -24,6 +25,7 @@ class RegisterAdminRequest extends FormRequest
      *
      * @return array
      */
+    //管理者名とパスワードと確認用パスワードのバリデーション
     public function rules()
     {
         return [

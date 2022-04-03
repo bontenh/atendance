@@ -25,6 +25,7 @@ class NullRule implements Rule
      */
     public function passes($attribute, $value)
     {
+        //入力が空か判断する
         if(!isset($value)){
             return false;
         }
