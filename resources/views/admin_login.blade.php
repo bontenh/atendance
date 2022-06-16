@@ -15,6 +15,9 @@
                 </ul>
             </div>
         </div>
+        <div class="link-menu">
+            <a href="/top">Top</a>>管理者ログイン
+        </div>
         <div class="main">
             <h1>管理者ログイン</h1>
             <form action="/login/do_admin_login" method="post">

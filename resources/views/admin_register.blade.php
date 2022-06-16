@@ -15,6 +15,9 @@
                 </ul>
             </div>
         </div>
+        <div class="link-menu">
+            <a href="/top">Top</a>>管理者ログイン
+        </div>
         <div class="main">
         <h1>管理者登録</h1>
     <form action="/register/do_admin_register" method="post">
