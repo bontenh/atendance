@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="link-menu">
-            <a href="/top">Top</a>>管理者ログイン
+            <a href="/top">Top</a>>管理者登録
         </div>
         <div class="main">
         <h1>管理者登録</h1>
